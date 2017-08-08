@@ -1,0 +1,8 @@
+<?php
+/** @var EMS_Pay_Block_Payment_Form_Form $this */
+$_code = $this->getMethodCode();
+?>
+<div id="payment_form_<?php echo $_code ?>"  class="form-list" style="display:none;">
+    <img src="<?php echo $this->getLogoPath(); ?>">
+    <p><?php echo $this->__('Pay online with %s', $this->getMethod()->getTitle()); ?></p>
+</div>

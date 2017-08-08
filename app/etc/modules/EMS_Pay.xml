@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <EMS_Pay>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Checkout/>
+                <Mage_Payment/>
+                <Mage_Sales/>
+            </depends>
+        </EMS_Pay>
+    </modules>
+</config>

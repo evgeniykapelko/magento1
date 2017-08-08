@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <ems_pay_index_redirect>
+        <update handle="page_one_column"/>
+        <reference name="content">
+            <block type="ems_pay/redirect" name="ems_pay_redirect"/>
+        </reference>
+        <reference name="footer">
+            <action method="unsetChild">
+                <name>newsletter</name>
+            </action>
+        </reference>
+    </ems_pay_index_redirect>
+
+    <checkout_onepage_index>
+        <reference name="head">
+            <action method="addCss">
+                <file>css/ems_pay.css</file>
+            </action>
+        </reference>
+    </checkout_onepage_index>
+</layout>

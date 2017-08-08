@@ -1,0 +1,21 @@
+<?php
+/** @var EMS_Pay_Block_Payment_Form_Maestro $this */
+$_code = $this->getMethodCode();
+?>
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
+    <li>
+        <img src="<?php echo $this->getLogoPath(); ?>">
+        <p><?php echo $this->__('Pay online with %s', $this->getMethod()->getTitle()); ?></p>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_debit_card_type" class="required"><em>*</em><?php echo $this->__('Please choose debit card') ?></label>
+        <div class="input-box">
+            <select id="<?php echo $_code ?>_debit_card_type" name="payment[debit_card_type]" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Please choose debit card')) ?>" class="required-entry">
+                <?php $_selectedCard = $this->getSelectedCardType(); ?>
+                <?php foreach ($this->getCardTypes() as $_cardCode => $_cardName): ?>
+                    <option value="<?php echo $_cardCode ?>"<?php if($_cardCode == $_selectedCard): ?> selected="selected"<?php endif ?>><?php echo $_cardName ?></option>
+                <?php endforeach ?>
+            </select>
+        </div>
+    </li>
+</ul>

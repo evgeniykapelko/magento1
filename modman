@@ -1,0 +1,11 @@
+# modman module description
+# see https://github.com/colinmollenhour/modman/ for more info
+
+app/etc/modules/EMS_Pay.xml                            app/etc/modules/EMS_Pay.xml
+app/code/community/EMS/Pay/                            app/code/community/EMS/Pay/
+app/locale/en_US/EMS_Pay.csv                           app/locale/en_US/EMS_Pay.csv
+app/design/frontend/base/default/layout/ems_pay.xml    app/design/frontend/base/default/layout/ems_pay.xml
+app/design/frontend/base/default/template/ems_pay/     app/design/frontend/base/default/template/ems_pay/
+lib/Mobile/                                            lib/Mobile/
+skin/frontend/base/default/css/ems_pay.css             skin/frontend/base/default/css/ems_pay.css
+skin/frontend/base/default/images/ems_pay/             skin/frontend/base/default/images/ems_pay/
