@@ -117,12 +117,12 @@ class EMS_Pay_Model_Ipn
         );
 
         $this->_order->save();
+        $invoice = Mage::getModel('sales/service_order', $this->_order)->prepareInvoice();
 
-        $invoice = $payment->getCreatedInvoice();
         if ($invoice) {
             // notify customer
             $message = $this->_helper->__('Notified customer about invoice #%s.', $invoice->getIncrementId());
-            $this->_order->queueNewOrderEmail()->addStatusHistoryComment($message)
+            $this->_order->queueNewOrderEmail(true)->addStatusHistoryComment($message)
                 ->setIsCustomerNotified(true)
                 ->save();
         }
