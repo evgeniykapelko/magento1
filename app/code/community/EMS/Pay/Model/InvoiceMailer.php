@@ -37,7 +37,6 @@ class EMS_Pay_Model_InvoiceMailer extends Mage_Sales_Model_Order_Invoice
      * @param bool $notifyCustomer
      * @param string $comment
      * @param bool $forceMode
-     * @return $this
      * @throws Exception
      */
     public function sendToQueue($notifyCustomer = true, $comment = '', $forceMode = false)
