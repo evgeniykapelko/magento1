@@ -11,17 +11,17 @@ class EMS_Pay_Model_InvoiceMailer extends Mage_Sales_Model_Order_Invoice
     const EMAIL_EVENT_NAME_NEW_INVOICE = 'new_invoice';
 
     /**
-     * @var Mage_Sales_Model_Order
+     * @var /Mage_Sales_Model_Order $_order
      */
     protected $_order;
 
     /**
-     * @var Mage_Sales_Model_Order_Invoice
+     * @var /Mage_Sales_Model_Order_Invoice $_invoice
      */
     protected $_invoice;
 
     /**
-     * @var EMS_Pay_Helper_Data
+     * @var EMS_Pay_Helper_Data $_helper
      */
     protected $_helper;
 
