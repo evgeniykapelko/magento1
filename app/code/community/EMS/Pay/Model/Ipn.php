@@ -117,20 +117,27 @@ class EMS_Pay_Model_Ipn
         );
 
         $this->_order->save();
-        $invoice = Mage::getModel('sales/service_order', $this->_order)->prepareInvoice();
 
-        if ($invoice) {
-            // notify customer
-            $message = $this->_helper->__('Notified customer about invoice #%s.', $invoice->getIncrementId());
-            $this->_order->queueNewOrderEmail(true)->addStatusHistoryComment($message)
-                ->setIsCustomerNotified(true)
-                ->save();
-            /** @var EMS_Pay_Model_InvoiceMailer $invoiceMailer */
-            $invoiceMailer = Mage::getModel('ems_pay/invoiceMailer');
-            $invoiceMailer->setOrder($this->_order);
-            $invoiceMailer->setInvoice($invoice);
-            $invoiceMailer->sendToQueue();
+        $this->_order->queueNewOrderEmail()
+            ->setIsCustomerNotified(true)
+            ->save();
+
+        /** @var EMS_Pay_Model_InvoiceMailer $invoiceMailer */
+        $invoiceMailer = Mage::getModel('ems_pay/invoiceMailer');
+        $invoiceMailer->setOrder($this->_order);
+
+        $ids = array();
+        $invoices = $this->_order->getInvoiceCollection();
+        foreach($invoices as $invoice) {
+            if ($invoice) {
+                $ids[] = $invoice->getIncrementId();
+                $invoiceMailer->setInvoice($invoice);
+                $invoiceMailer->sendToQueue();
+            }
         }
+        $multi = count($ids)>1 ? 's' : '';
+        $message = $this->_helper->__('Notified customer about invoice'.$multi.': #%s.', implode(', ', $ids));
+        $this->_order->addStatusHistoryComment($message)->save();
     }
 
     /**
