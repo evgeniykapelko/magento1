@@ -125,6 +125,11 @@ class EMS_Pay_Model_Ipn
             $this->_order->queueNewOrderEmail(true)->addStatusHistoryComment($message)
                 ->setIsCustomerNotified(true)
                 ->save();
+            /** @var EMS_Pay_Model_InvoiceMailer $invoiceMailer */
+            $invoiceMailer = Mage::getModel('ems_pay/invoiceMailer');
+            $invoiceMailer->setOrder($this->_order);
+            $invoiceMailer->setInvoice($invoice);
+            $invoiceMailer->sendToQueue();
         }
     }
 
