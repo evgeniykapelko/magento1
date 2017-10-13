@@ -10,6 +10,7 @@ This plugin will add support for the following EMS payments methods to your Mage
 * MasterPass
 * Klarna
 * Sofort
+* Bancontact
 * Maestro, Maestro UK
 
 ## Provisioning
