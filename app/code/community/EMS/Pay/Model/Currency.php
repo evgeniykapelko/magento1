@@ -128,6 +128,10 @@ class EMS_Pay_Model_Currency
         'EUR' => '978', // Euro
     ];
 
+    protected $_bancontactSupportedCurrencies = [
+        'EUR' => '978', // Euro
+    ];
+
     public function __construct()
     {
         $this->_helper = Mage::helper('ems_pay');
@@ -216,5 +220,22 @@ class EMS_Pay_Model_Currency
     public function isCurrencySupportedByIdeal($currencyCode)
     {
         return $this->isCurrencySupportedByKlarna($currencyCode) && isset($this->_idealSupportedCurrencies[$currencyCode]);
+    }
+
+    /**
+     * Checks whether given currency is supported by Bancontact.
+     *
+     * @param string $currencyCode ISO 4217 alphanumeric currency code
+     * @param string $countryCode ISO 3166-1 alpha-2 (dwo letter) country code
+     * @return bool
+     */
+    public function isCurrencySupportedByBancontact($currencyCode, $countryCode = '')
+    {
+        if ($countryCode === '') {
+            return isset($this->_bancontactSupportedCurrencies[$currencyCode]);
+        }
+
+        return isset($this->_bancontactSupportedCurrencies[$currencyCode])
+        && in_array($countryCode, $this->_bancontactSupportedCurrencies[$currencyCode]);
     }
 }
