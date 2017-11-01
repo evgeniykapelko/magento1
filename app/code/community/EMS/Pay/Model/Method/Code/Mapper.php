@@ -14,6 +14,7 @@ class EMS_Pay_Model_Method_Code_Mapper
     const EMS_CODE_MASTER_PASS = 'masterpass';
     const EMS_CODE_PAYPAL = 'paypal';
     const EMS_CODE_SOFORT = 'sofort';
+    const EMS_CODE_BANCONTACT = 'bancontact';
 
     /**
      * Maps payment method codes used in magento to codes used by EMS
@@ -33,6 +34,7 @@ class EMS_Pay_Model_Method_Code_Mapper
         EMS_Pay_Model_Config::METHOD_MASTER_PASS => self::EMS_CODE_MASTER_PASS,
         EMS_Pay_Model_Config::METHOD_PAYPAL => self::EMS_CODE_PAYPAL,
         EMS_Pay_Model_Config::METHOD_SOFORT => self::EMS_CODE_SOFORT,
+        EMS_Pay_Model_Config::METHOD_BANCONTACT => self::EMS_CODE_BANCONTACT,
     ];
 
     /**
@@ -52,7 +54,8 @@ class EMS_Pay_Model_Method_Code_Mapper
         self::EMS_CODE_MAESTRO_UK => 'Maestro UK',
         self::EMS_CODE_MASTER_PASS => 'MasterPass',
         self::EMS_CODE_PAYPAL => 'PayPal',
-        self::EMS_CODE_SOFORT => 'SOFORT Banking'
+        self::EMS_CODE_SOFORT => 'SOFORT Banking',
+        self::EMS_CODE_BANCONTACT => 'Bancontact'
     ];
 
     /**

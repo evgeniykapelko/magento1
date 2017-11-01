@@ -25,6 +25,7 @@ class EMS_Pay_Model_Config
     const METHOD_MASTER_PASS = 'ems_pay_masterpass';
     const METHOD_PAYPAL = 'ems_pay_paypal';
     const METHOD_SOFORT = 'ems_pay_sofort';
+    const METHOD_BANCONTACT = 'ems_pay_bancontact';
 
     const TXNTYPE_SALE = 'sale';
 
@@ -49,6 +50,7 @@ class EMS_Pay_Model_Config
     const XML_CONFIG_SHARED_SECRET_PRODUCTION = 'payment/ems_pay_general/shared_secret_production';
     const XML_CONFIG_LOGGING_ENABLED = 'payment/ems_pay_general/log_enabled';
     const XML_CONFIG_IDEAL_BANK_SELECTION = 'payment/ems_pay_ideal/bank_selection_enabled';
+    const XML_CONFIG_BANCONTACT_BANK_SELECTION = 'payment/ems_pay_bancontact/bank_selection_enabled';
     const XML_CONFIG_CC_TYPES = 'payment/ems_pay_cc/cctypes';
     const XML_CONFIG_CC_3DSECURE = 'payment/ems_pay_cc/enable_3dsecure';
 
@@ -101,6 +103,16 @@ class EMS_Pay_Model_Config
     ];
 
     /**
+     * List of countries supported by Bancontact
+     *
+     * @var array ISO 3166-1 alpha-2 (dwo letter) country codes
+     */
+    protected $_bancontactSupportedCountries = [
+        'BE', // Belgium
+
+    ];
+
+    /**
      * List of issuing banks supported by iDEAL
      *
      * @var array
@@ -116,6 +128,35 @@ class EMS_Pay_Model_Config
         'SNSBNL2A' => 'SNS Bank',
         'TRIONL2U' => 'Triodos Bank',
         'FVLBNL22' => 'van Lanschot',
+    ];
+
+    /**
+     * List of issuing banks supported by Bancontact
+     *
+     * @var array
+     */
+    protected $_bancontactIssuingBanks = [
+
+        'ABERBE22' => 'ABK Bank',
+        'ARSPBE22' => 'Argenta',
+        'AXABBE22' => 'AXA BANK EUROPE',
+        'AXBIBEBB' => 'AXA BELGIUM',
+        'JVBABE22' => 'Bank J. Van Breda',
+        'GKCCBEBB' => 'Belfius',
+        'CTBKBEBX' => 'Beobank',
+        'GEBABEBB' => 'BNP Paribas Fortis',
+        'PCHQBEBB' => 'BPOST',
+        'BPOTBEBE' => 'BPOST BANK-BPOST BANQUE',
+        'CREGBEBB' => 'CBC Banque',
+        'CPHBBE75' => 'CPH Banque',
+        'NICABEBB' => 'Crelan',
+        'DEUTBEBE' => 'Deutsche Bank',
+        'BBRUBEBB' => 'ING België',
+        'KREDBEBB' => 'KBC Bank',
+        'KEYTBEBB' => 'Keytrade Bank',
+        'BNAGBEBB' => 'Nagelmackers',
+        'HBKABE22' => 'Record Bank',
+        'VDSPBE91' => 'VDK Spaarbank',
     ];
 
     /**
@@ -181,6 +222,7 @@ class EMS_Pay_Model_Config
         self::METHOD_MASTER_PASS => 'masterpass.png',
         self::METHOD_PAYPAL => 'paypal.png',
         self::METHOD_SOFORT => 'sofort.png',
+        self::METHOD_BANCONTACT => 'bancontact.svg',
     ];
 
     /**
@@ -324,11 +366,31 @@ class EMS_Pay_Model_Config
     }
 
     /**
+     * Checks if given country is supported by Bancontact
+     *
+     * @param string $countryCode ISO 3166-1 alpha-2 (dwo letter) country code
+     * @return bool
+     */
+    public function isCountrySupportedByBancontact($countryCode)
+    {
+        return in_array($countryCode, $this->_bancontactSupportedCountries);
+    }
+
+    /**
      * @return bool
      */
     public function isIdealIssuingBankSelectionEnabled()
     {
         return Mage::getStoreConfigFlag(self::XML_CONFIG_IDEAL_BANK_SELECTION);
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function isBancontactIssuingBankSelectionEnabled()
+    {
+        return Mage::getStoreConfigFlag(self::XML_CONFIG_BANCONTACT_BANK_SELECTION);
     }
 
     /**
@@ -347,11 +409,34 @@ class EMS_Pay_Model_Config
     }
 
     /**
+     * Returns list of issuing banks supported by Bancontact
+     *
+     * @return array bank names indexed by bank code
+     */
+    public function getBancontactIssuingBanks()
+    {
+        $banks = $this->_bancontactIssuingBanks;
+        foreach ($banks as $code => $name) {
+            $banks[$code] = $this->_helper->__($name);
+        }
+
+        return $banks;
+    }
+
+    /**
      * @param string $code
      * @return bool
      */
     public function isIdealIssuingBankCodeValid($code) {
         return isset($this->_idealIssuingBanks[strtoupper($code)]);
+    }
+
+    /**
+     * @param string $code
+     * @return bool
+     */
+    public function isBancontactIssuingBankCodeValid($code) {
+        return isset($this->_bancontactIssuingBanks[strtoupper($code)]);
     }
 
     /**
