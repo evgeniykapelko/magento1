@@ -222,7 +222,7 @@ class EMS_Pay_Model_Config
         self::METHOD_MASTER_PASS => 'masterpass.png',
         self::METHOD_PAYPAL => 'paypal.png',
         self::METHOD_SOFORT => 'sofort.png',
-        self::METHOD_BANCONTACT => 'bancontact.svg',
+        self::METHOD_BANCONTACT => 'bancontact.png',
     ];
 
     /**
