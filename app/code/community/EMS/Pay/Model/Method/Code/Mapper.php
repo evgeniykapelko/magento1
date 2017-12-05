@@ -14,7 +14,7 @@ class EMS_Pay_Model_Method_Code_Mapper
     const EMS_CODE_MASTER_PASS = 'masterpass';
     const EMS_CODE_PAYPAL = 'paypal';
     const EMS_CODE_SOFORT = 'sofort';
-    const EMS_CODE_BANCONTACT = 'bancontact';
+    const EMS_CODE_BANCONTACT = 'BCMC';
 
     /**
      * Maps payment method codes used in magento to codes used by EMS
