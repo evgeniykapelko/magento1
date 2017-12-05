@@ -71,6 +71,8 @@ class EMS_Pay_Model_Info
 
     const IDEAL_ISSUER_ID = 'idealIssuerID';
 
+    const BANCONTACT_ISSUER_ID = 'bancontactIssuerID';
+
     const CART_ITEM_FIELD_INDEX = 'item';
     const CART_ITEM_FIELD_SEPARATOR = ';';
     const CART_ITEM_SHIPPING_AMOUNT = 0;

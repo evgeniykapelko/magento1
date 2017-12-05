@@ -13,7 +13,7 @@ class EMS_Pay_Model_Method_Bancontact extends EMS_Pay_Model_Method_Abstract
     protected function _getMethodSpecificRequestFields()
     {
         $fields = [];
-        $fields[EMS_Pay_Model_Info::IDEAL_ISSUER_ID] = $this->_getIssuingBankCode();
+        $fields[EMS_Pay_Model_Info::BANCONTACT_ISSUER_ID] = $this->_getIssuingBankCode();
 
         return $fields;
     }
