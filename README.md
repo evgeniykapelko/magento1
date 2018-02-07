@@ -43,7 +43,7 @@ https://www.emspay.eu/en/about-ems/contact
 
 ## Installation
 
-* Compatible with Magento 1.7.0.2 - 1.9.3.2
+* Compatible with Magento 1.7.0.2 - 1.9.3.7
 
     ##### It's highly recommended to test the module on dev/staging environment before installing it on production and to backup you site's code and database before installing the module.
 
