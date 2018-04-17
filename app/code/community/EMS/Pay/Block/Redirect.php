@@ -43,8 +43,9 @@ class EMS_Pay_Block_Redirect extends Mage_Core_Block_Template
     {
         $paymentMethod = $this->_getOrder()->getPayment()->getMethodInstance();
         if (!$paymentMethod instanceof EMS_Pay_Model_Method_Abstract) {
-            throw new Exception($this->_helper->__('Payment method %s is not supported', get_class($paymentMethod)));
+            Mage::throwException($this->_helper->__('Payment method %s is not supported', get_class($paymentMethod)));
         }
+
         return $paymentMethod;
     }
 

@@ -77,7 +77,7 @@ class EMS_Pay_Model_Config
      *
      * @var array
      */
-    protected $_creditCardMethods = [
+    protected $_creditCardMethods = array(
         self::METHOD_CC,
         self::METHOD_MASTER_CARD,
         self::METHOD_VISA,
@@ -86,38 +86,38 @@ class EMS_Pay_Model_Config
         self::METHOD_JCB,
         self::METHOD_MAESTRO,
         self::METHOD_MAESTRO_UK
-    ];
+    );
 
     /**
      * List of countries supported by Klarna
      *
      * @var array ISO 3166-1 alpha-2 (dwo letter) country codes
      */
-    protected $_klarnaSupportedCountries = [
+    protected $_klarnaSupportedCountries = array(
         'AT', // Austria
         'DE', // Germany
         'NL', // Netherlands
         'NO', // Norway
         'DK', // Denmark
         'SE', // Sweden
-    ];
+    );
 
     /**
      * List of countries supported by Bancontact
      *
      * @var array ISO 3166-1 alpha-2 (dwo letter) country codes
      */
-    protected $_bancontactSupportedCountries = [
+    protected $_bancontactSupportedCountries = array(
         'BE', // Belgium
 
-    ];
+    );
 
     /**
      * List of issuing banks supported by iDEAL
      *
      * @var array
      */
-    protected $_idealIssuingBanks = [
+    protected $_idealIssuingBanks = array(
         'ABNANL2A' => 'ABN AMRO',
         'ASNBNL21' => 'ASN Bank',
         'BUNQNL2A' => 'Bunq',
@@ -128,14 +128,14 @@ class EMS_Pay_Model_Config
         'SNSBNL2A' => 'SNS Bank',
         'TRIONL2U' => 'Triodos Bank',
         'FVLBNL22' => 'van Lanschot',
-    ];
+    );
 
     /**
      * List of issuing banks supported by Bancontact
      *
      * @var array
      */
-    protected $_bancontactIssuingBanks = [
+    protected $_bancontactIssuingBanks = array(
 
         'ABERBE22' => 'ABK Bank',
         'ARSPBE22' => 'Argenta',
@@ -157,28 +157,28 @@ class EMS_Pay_Model_Config
         'BNAGBEBB' => 'Nagelmackers',
         'HBKABE22' => 'Record Bank',
         'VDSPBE91' => 'VDK Spaarbank',
-    ];
+    );
 
     /**
      * List of maestro debit card types
      *
      * @var array
      */
-    protected $_maestroCardTypes = [
+    protected $_maestroCardTypes = array(
         self::METHOD_MAESTRO => 'Maestro',
         self::METHOD_MAESTRO_UK => 'Maestro UK'
-    ];
+    );
 
     /**
      * List of available credit card types
      *
      * @var array
      */
-    protected $_creditCardTypes = [
+    protected $_creditCardTypes = array(
         self::METHOD_VISA => 'Visa',
         self::METHOD_MASTER_CARD => 'MasterCard',
         self::METHOD_DINERS => 'Diners',
-    ];
+    );
 
     /**
      * @var string
@@ -188,7 +188,7 @@ class EMS_Pay_Model_Config
     /**
      * @var array
      */
-    protected $_supportedLanguages = [
+    protected $_supportedLanguages = array(
         'zh_CN', // Chinese (simplified)
         'zh_TW', // Chinese (traditional)
         'nl_NL', // Dutch
@@ -201,14 +201,14 @@ class EMS_Pay_Model_Config
         'pt_BR', // Portuguese (Brazil)
         'sk_SK', // Slovak
         'es_ES', // Spanish
-    ];
+    );
 
     /**
      * Maps payment method codes to logo file names
      *
      * @var array
      */
-    protected $_logosMap = [
+    protected $_logosMap = array(
         self::METHOD_CC => '',
         self::METHOD_JCB => '',
         self::METHOD_AMERICAN_EXPRESS => '',
@@ -223,13 +223,13 @@ class EMS_Pay_Model_Config
         self::METHOD_PAYPAL => 'paypal.png',
         self::METHOD_SOFORT => 'sofort.png',
         self::METHOD_BANCONTACT => 'bancontact.png',
-    ];
+    );
 
     /**
      * EMS_Pay_Model_Config constructor.
      * @param array $params first element should be payment method code, second element should be store id
      */
-    public function __construct(array $params = [])
+    public function __construct(array $params = array())
     {
         $this->_helper = Mage::helper('ems_pay');
 
@@ -487,7 +487,7 @@ class EMS_Pay_Model_Config
         $availableCards = $this->getAvailableCreditCardTypes();
         $allowedCardTypes = Mage::getStoreConfig(self::XML_CONFIG_CC_TYPES);
         if ((string)$allowedCardTypes === '') {
-            return [];
+            return array();
         }
 
         $allowedCardTypes = explode(',', $allowedCardTypes);

@@ -43,18 +43,18 @@ class EMS_Pay_Model_InvoiceMailer extends Mage_Sales_Model_Order_Invoice
     {
         if(!$this->_order instanceof Mage_Sales_Model_Order ||
             !$this->_invoice instanceof Mage_Sales_Model_Order_Invoice) {
-            throw new Exception($this->_helper->__('Order and Invoice object must be set.'));
+            Mage::throwException($this->_helper->__('Order and Invoice object must be set.'));
         }
 
         $storeId = $this->_order->getStore()->getId();
 
         if (!Mage::helper('sales')->canSendNewInvoiceEmail($storeId)) {
-            throw new Exception($this->_helper->__('Cannot send Invoice Email for Invoice ID: '.$this->_invoice->getId()));
+            Mage::throwException($this->_helper->__('Cannot send Invoice Email for Invoice ID: '.$this->_invoice->getId()));
         }
         $copyTo = $this->_getEmails(self::XML_PATH_EMAIL_COPY_TO);
         $copyMethod = Mage::getStoreConfig(self::XML_PATH_EMAIL_COPY_METHOD, $storeId);
         if (!$notifyCustomer && !$copyTo) {
-            throw new Exception($this->_helper->__('Cannot send Invoice Email for Invoice ID: '.$this->_invoice->getId().', no recipients added.'));
+            Mage::throwException($this->_helper->__('Cannot send Invoice Email for Invoice ID: '.$this->_invoice->getId().', no recipients added.'));
         }
 
         $appEmulation = Mage::getSingleton('core/app_emulation');

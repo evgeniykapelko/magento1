@@ -43,7 +43,7 @@ abstract class EMS_Pay_Model_Method_Abstract extends Mage_Payment_Model_Method_A
      *
      * @var array
      */
-    protected $_roundingAmounts = [];
+    protected $_roundingAmounts = array();
 
     /**
      * Stores current index of cart item fields
@@ -113,11 +113,11 @@ abstract class EMS_Pay_Model_Method_Abstract extends Mage_Payment_Model_Method_A
      */
     public function getRedirectFormFields()
     {
-        $debugData = [];
+        $debugData = array();
         $config = $this->_getConfig();
 
         try {
-            $fields = [
+            $fields = array(
                 EMS_Pay_Model_Info::TXNTYPE => $config->getTxnType(),
                 EMS_Pay_Model_Info::TIMEZONE => $this->_getTimezone(),
                 EMS_Pay_Model_Info::TXNDATETIME => $this->_getTransactionTime(),
@@ -136,7 +136,7 @@ abstract class EMS_Pay_Model_Method_Abstract extends Mage_Payment_Model_Method_A
                 EMS_Pay_Model_Info::LANGUAGE => $this->_getLanguage(),
                 EMS_Pay_Model_Info::BEMAIL => $this->_getOrder()->getCustomerEmail(),
                 EMS_Pay_Model_Info::MOBILE_MODE => $this->_getMobileMode(),
-            ];
+            );
 
             $fields = array_merge($fields, $this->_getAddressRequestFields());
             $fields = array_merge($fields, $this->_getMethodSpecificRequestFields());
@@ -161,7 +161,7 @@ abstract class EMS_Pay_Model_Method_Abstract extends Mage_Payment_Model_Method_A
      */
     protected function _getAddressRequestFields()
     {
-        $fields = [];
+        $fields = array();
         $order = $this->_getOrder();
 
         $billingAddress = $order->getBillingAddress();
@@ -194,7 +194,7 @@ abstract class EMS_Pay_Model_Method_Abstract extends Mage_Payment_Model_Method_A
      */
     protected function _getCartRequestFields()
     {
-        $fields = [];
+        $fields = array();
         $order = $this->_getOrder();
 
         $fields[EMS_Pay_Model_Info::SHIPPING] = EMS_Pay_Model_Info::CART_ITEM_SHIPPING_AMOUNT;
@@ -269,7 +269,7 @@ abstract class EMS_Pay_Model_Method_Abstract extends Mage_Payment_Model_Method_A
      */
     protected function _getMethodSpecificRequestFields()
     {
-        return [];
+        return array();
     }
 
     /**
@@ -534,13 +534,13 @@ abstract class EMS_Pay_Model_Method_Abstract extends Mage_Payment_Model_Method_A
      */
     protected function _saveTransactionData()
     {
-        $data = [
+        $data = array(
             EMS_Pay_Model_Info::CURRENCY => $this->_getTextCurrencyCode(),
             EMS_Pay_Model_Info::CHARGETOTAL => $this->_getChargeTotal(),
             EMS_Pay_Model_Info::TXNDATETIME => $this->_getTransactionTime(),
             EMS_Pay_Model_Info::HASH_ALGORITHM => $this->_getHashAlgorithm(),
             EMS_Pay_Model_Info::PAYMENT_METHOD => $this->_getPaymentMethodName(),
-        ];
+        );
 
         $info = $this->getInfoInstance();
         foreach ($data as $key => $value) {
@@ -595,7 +595,7 @@ abstract class EMS_Pay_Model_Method_Abstract extends Mage_Payment_Model_Method_A
     protected function _getConfig()
     {
         if (null === $this->_config) {
-            $params = [$this->getCode()];
+            $params = array($this->getCode());
             if ($store = $this->getStore()) {
                 $params[] = is_object($store) ? $store->getId() : $store;
             }

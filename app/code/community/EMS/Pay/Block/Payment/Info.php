@@ -29,7 +29,7 @@ class EMS_Pay_Block_Payment_Info extends Mage_Payment_Block_Info_Cc
         $paymentInfo = Mage::getModel('ems_pay/info');
 
         if ($this->getInfo()->getCcLast4()) {
-            $transport->addData([Mage::helper('payment')->__('Credit Card Number') => $this->getInfo()->getCcLast4()]);
+            $transport->addData(array(Mage::helper('payment')->__('Credit Card Number') => $this->getInfo()->getCcLast4()));
         }
 
         if ($this->getIsSecureMode()) {

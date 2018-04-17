@@ -49,7 +49,7 @@ class EMS_Pay_Helper_Checkout extends Mage_Core_Helper_Abstract
         }
 
         if (!$this->_order->getId()) {
-            throw new Exception(Mage::helper('ems_pay')->__('Order for id %s not found', $orderId));
+            Mage::throwException(Mage::helper('ems_pay')->__('Order for id %s not found', $orderId));
         }
 
         return $this->_order;

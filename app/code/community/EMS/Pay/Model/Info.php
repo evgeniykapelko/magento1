@@ -91,14 +91,14 @@ class EMS_Pay_Model_Info
      *
      * @var array
      */
-    protected $_publicPaymentInfoFields = [
+    protected $_publicPaymentInfoFields = array(
         self::ACCOUNT_OWNER_NAME
-    ];
+    );
 
     /**
      * @var array
      */
-    protected $_paymentInfoFields = [
+    protected $_paymentInfoFields = array(
         self::CHARGETOTAL,
         self::CURRENCY,
         self::PAYMENT_METHOD,
@@ -109,7 +109,7 @@ class EMS_Pay_Model_Info
         self::PROCESSOR_RESPONSE_CODE,
         self::IPG_TRANSACTION_ID,
         self::ENDPOINT_TRANSACTION_ID
-    ];
+    );
 
     /**
      * @param Mage_Payment_Model_Info $payment
@@ -136,7 +136,7 @@ class EMS_Pay_Model_Info
      */
     protected function _getPaymentInfoFields($fields, Mage_Payment_Model_Info $payment)
     {
-        $info = [];
+        $info = array();
         foreach ($fields as $field)
         {
             if ($payment->hasAdditionalInformation($field)) {
@@ -156,7 +156,7 @@ class EMS_Pay_Model_Info
     protected function _getFieldLabel($field)
     {
         $helper = Mage::helper('ems_pay');
-        $_fieldLabels = [
+        $_fieldLabels = array(
             self::CHARGETOTAL => $helper->__('Amount'),
             self::CURRENCY => $helper->__('Currency'),
             self::PAYMENT_METHOD => $helper->__('Payment method'),
@@ -169,7 +169,7 @@ class EMS_Pay_Model_Info
             self::IPG_TRANSACTION_ID => $helper->__('Ipg transaction id'),
             self::ENDPOINT_TRANSACTION_ID => $helper->__('Endpoint transaction id'),
             self::PROCESSOR_RESPONSE_CODE => $helper->__('Processor response code'),
-        ];
+        );
 
         return isset($_fieldLabels[$field]) ? $_fieldLabels[$field] : '';
     }

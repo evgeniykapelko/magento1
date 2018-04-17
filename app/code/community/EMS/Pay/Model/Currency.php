@@ -12,7 +12,7 @@ class EMS_Pay_Model_Currency
      *
      * @var array
      */
-    protected $_currencyMap = [
+    protected $_currencyMap = array(
         'AUD' => '036', // Australian dollar
         'BRL' => '986', // Brazilian real
         'EUR' => '978', // Euro
@@ -57,14 +57,14 @@ class EMS_Pay_Model_Currency
         'TTD' => '780', // Trinidad and Tobago dollar
         'TRY' => '949', // Turkish lira
         'AED' => '784', // United Arab Emirates dirham
-    ];
+    );
 
     /**
      * Maps supported ISO 4217 alphanumeric currency codes to labels
      *
      * @var array
      */
-    protected $_currencyLabels = [
+    protected $_currencyLabels = array(
         'AUD' => 'Australian dollar',
         'BRL' => 'Brazilian real',
         'EUR' => 'Euro',
@@ -109,28 +109,28 @@ class EMS_Pay_Model_Currency
         'TTD' => 'Trinidad and Tobago dollar',
         'TRY' => 'Turkish lira',
         'AED' => 'United Arab Emirates dirham'
-    ];
+    );
 
     /**
      * @var array
      */
-    protected $_klarnaSupportedCountryCurrency = [
-        'EUR' => ['AT', 'DE', 'NL', 'NO'], //Euro (978)
-        'DKK' => ['DK'], //Danish krone (208)
-        'NOK' => ['NO'], //Norwegian krone (578)
-        'SEK' => ['SE'], //Swedish krona (752)
-    ];
+    protected $_klarnaSupportedCountryCurrency = array(
+        'EUR' => array('AT', 'DE', 'NL', 'NO'), //Euro (978)
+        'DKK' => array('DK'), //Danish krone (208)
+        'NOK' => array('NO'), //Norwegian krone (578)
+        'SEK' => array('SE'), //Swedish krona (752)
+    );
 
     /**
      * @var array
      */
-    protected $_idealSupportedCurrencies = [
+    protected $_idealSupportedCurrencies = array(
         'EUR' => '978', // Euro
-    ];
+    );
 
-    protected $_bancontactSupportedCurrencies = [
+    protected $_bancontactSupportedCurrencies = array(
         'EUR' => '978', // Euro
-    ];
+    );
 
     public function __construct()
     {
@@ -149,11 +149,11 @@ class EMS_Pay_Model_Currency
             (string)$currency;
 
         if ($code == '') {
-            throw new Exception($this->_helper->__('Currency code can not be empty'));
+            Mage::throwException($this->_helper->__('Currency code can not be empty'));
         }
 
         if (!isset($this->_currencyMap[$code])) {
-            throw new Exception($this->_helper->__('%s currency is not allowed', $code));
+            Mage::throwException($this->_helper->__('%s currency is not allowed', $code));
         }
 
         return $this->_currencyMap[$code];
