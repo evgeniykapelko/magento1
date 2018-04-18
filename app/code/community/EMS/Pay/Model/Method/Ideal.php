@@ -12,7 +12,7 @@ class EMS_Pay_Model_Method_Ideal extends EMS_Pay_Model_Method_Abstract
      */
     protected function _getMethodSpecificRequestFields()
     {
-        $fields = [];
+        $fields = array();
         $fields[EMS_Pay_Model_Info::IDEAL_ISSUER_ID] = $this->_getIssuingBankCode();
 
         return $fields;

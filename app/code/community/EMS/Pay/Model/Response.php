@@ -250,7 +250,7 @@ class EMS_Pay_Model_Response
         );
 
         if ($this->_response[self::FIELD_RESPONSE_HASH] !== $hash) {
-            throw new Exception($this->_helper->__('Response hash is not valid'));
+            Mage::throwException($this->_helper->__('Response hash is not valid'));
         }
 
         return true;
@@ -272,7 +272,7 @@ class EMS_Pay_Model_Response
         );
 
         if ($this->_response[self::FIELD_NOTIFICATION_HASH] !== $hash) {
-            throw new Exception($this->_helper->__('Notification hash is not valid'));
+            Mage::throwException($this->_helper->__('Notification hash is not valid'));
         }
 
         return true;
@@ -286,18 +286,18 @@ class EMS_Pay_Model_Response
      */
     protected function _validateRequiredFields()
     {
-        $requiredFields = [
+        $requiredFields = array(
             self::FIELD_ORDER_ID,
             self::FIELD_CURRENCY,
             self::FIELD_CHARGETOTAL,
             self::FIELD_APPROVAL_CODE,
-        ];
+        );
 
         $requiredFields[] = $this->_isNotification() ? self::FIELD_NOTIFICATION_HASH : self::FIELD_RESPONSE_HASH;
 
         foreach ($requiredFields as $field) {
             if (!$this->_isRequestFieldNotEmpty($field)) {
-                throw new Exception($this->_helper->__("%s missing in notification request", $field));
+                Mage::throwException($this->_helper->__("%s missing in notification request", $field));
             }
         }
 

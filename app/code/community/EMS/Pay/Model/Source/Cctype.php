@@ -8,12 +8,12 @@ class EMS_Pay_Model_Source_Cctype
     public function toOptionArray()
     {
         $config = Mage::getSingleton('ems_pay/config');
-        $options = [];
+        $options = array();
         foreach ($config->getAvailableCreditCardTypes() as $code => $name) {
-            $options[] = [
+            $options[] = array(
                 'value' => $code,
                 'label' => $name
-            ];
+            );
         }
 
         return $options;

@@ -11,7 +11,7 @@ class EMS_Pay_Model_Method_Klarna extends EMS_Pay_Model_Method_Abstract
      */
     protected function _getMethodSpecificRequestFields()
     {
-        $fields = [];
+        $fields = array();
         /** @var $billingAddress Mage_Sales_Model_Order_Address */
         $billingAddress = $this->_getOrder()->getBillingAddress();
 

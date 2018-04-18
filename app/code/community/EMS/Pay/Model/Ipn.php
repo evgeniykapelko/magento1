@@ -27,7 +27,7 @@ class EMS_Pay_Model_Ipn
      *
      * @var array
      */
-    protected $_debugData = [];
+    protected $_debugData = array();
 
     public function __construct()
     {
@@ -189,12 +189,12 @@ class EMS_Pay_Model_Ipn
             $message = $this->_helper->__("Order for id %s not found", $orderId);
             $this->_debugData['exception'] = $message;
             $this->_debug();
-            throw new Exception($message);
+            Mage::throwException($message);
         }
 
         //reinitialize config with method code and store id taken from order
         $methodCode = $this->_order->getPayment()->getMethod();
-        $this->_config = Mage::getModel('ems_pay/config', [$methodCode, $this->_order->getStoreId()]);
+        $this->_config = Mage::getModel('ems_pay/config', array($methodCode, $this->_order->getStoreId()));
 
         return $this->_order;
     }
@@ -227,14 +227,14 @@ class EMS_Pay_Model_Ipn
     {
         $payment = $this->_order->getPayment();
         $currentInfo = $payment->getAdditionalInformation();
-        $data = [
+        $data = array(
             EMS_Pay_Model_Info::TRANSACTION_ID => $this->_response->getTransactionId(),
             EMS_Pay_Model_Info::APPROVAL_CODE => $this->_response->getApprovalCode(),
             EMS_Pay_Model_Info::REFNUMBER => $this->_response->getRefNumber(),
             EMS_Pay_Model_Info::IPG_TRANSACTION_ID => $this->_response->getIpgTransactionId(),
             EMS_Pay_Model_Info::ENDPOINT_TRANSACTION_ID => $this->_response->getEndpointTransactionId(),
             EMS_Pay_Model_Info::PROCESSOR_RESPONSE_CODE => $this->_response->getProcessorResponseCode(),
-        ];
+        );
 
         foreach ($data as $key => $value) {
             $payment->setAdditionalInformation($key, $value);

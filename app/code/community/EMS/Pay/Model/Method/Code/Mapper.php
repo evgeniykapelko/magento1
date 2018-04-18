@@ -21,7 +21,7 @@ class EMS_Pay_Model_Method_Code_Mapper
      *
      * @var array
      */
-    protected $_magentoToEmsMap = [
+    protected $_magentoToEmsMap = array(
         EMS_Pay_Model_Config::METHOD_MASTER_CARD => self::EMS_CODE_MASTER_CARD,
         EMS_Pay_Model_Config::METHOD_VISA => self::EMS_CODE_VISA,
         EMS_Pay_Model_Config::METHOD_AMERICAN_EXPRESS => self::EMS_CODE_AMERICAN_EXPRESS,
@@ -35,14 +35,14 @@ class EMS_Pay_Model_Method_Code_Mapper
         EMS_Pay_Model_Config::METHOD_PAYPAL => self::EMS_CODE_PAYPAL,
         EMS_Pay_Model_Config::METHOD_SOFORT => self::EMS_CODE_SOFORT,
         EMS_Pay_Model_Config::METHOD_BANCONTACT => self::EMS_CODE_BANCONTACT,
-    ];
+    );
 
     /**
      * Maps payment method codes used by EMS to human readable labels
      *
      * @var array
      */
-    protected $_emsToLabelMap = [
+    protected $_emsToLabelMap = array(
         self::EMS_CODE_MASTER_CARD => 'MasterCard',
         self::EMS_CODE_VISA => 'Visa',
         self::EMS_CODE_AMERICAN_EXPRESS => 'American Express',
@@ -56,7 +56,7 @@ class EMS_Pay_Model_Method_Code_Mapper
         self::EMS_CODE_PAYPAL => 'PayPal',
         self::EMS_CODE_SOFORT => 'SOFORT Banking',
         self::EMS_CODE_BANCONTACT => 'Bancontact'
-    ];
+    );
 
     /**
      * Returns payment method code required by ems
