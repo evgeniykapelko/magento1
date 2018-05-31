@@ -15,7 +15,7 @@ class EMS_Pay_Model_Method_Ideal extends EMS_Pay_Model_Method_Abstract
     {
         $fields = array();
         $fields[EMS_Pay_Model_Info::IDEAL_ISSUER_ID] = $this->_getIssuingBankCode();
-        $fields[EMS_Pay_Model_Info::IDEAL_CUSTOMER_ID] = $this->_getCustomerId();
+        $fields[EMS_Pay_Model_Info::IDEAL_CUSTOMER_ID] = $this->_getCustomerid();
 
         return $fields;
     }
