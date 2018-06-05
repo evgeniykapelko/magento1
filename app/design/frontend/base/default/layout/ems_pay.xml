@@ -19,4 +19,11 @@
             </action>
         </reference>
     </checkout_onepage_index>
+    <checkout_onepage_paymentmethod>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>ems_pay/methods.phtml</template>
+            </action>
+        </reference>
+    </checkout_onepage_paymentmethod>
 </layout>

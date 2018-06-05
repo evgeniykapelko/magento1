@@ -2,7 +2,9 @@
 /** @var EMS_Pay_Block_Payment_Form_Cc $this */
 $_code = $this->getMethodCode();
 $_cardTypes = $this->getCardTypes();
+$isEnable = $this->getEnableSeparateCc();
 ?>
+<?php if (!$isEnable): ?>
 <ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
     <li>
         <?php foreach ($_cardTypes as $_cCode => $_cName): ?>
@@ -22,3 +24,27 @@ $_cardTypes = $this->getCardTypes();
         </div>
     </li>
 </ul>
+<?php else: ?>
+    <?php foreach ($_cardTypes as $_cCode => $_cName): ?>
+        <dt id="dt_method_<?php echo $_cCode ?>">
+            <input id="p_method_<?php echo $_cCode ?>" value="<?php echo $_cCode ?>" type="radio" name="payment[method]" title="<?php echo $_cName ?>" onclick="payment.switchMethod('<?php echo $_cCode ?>')"<?php if($this->getSelectedMethodCode()==$_code): ?> checked="checked"<?php endif; ?> class="radio" />
+            <label for="p_method_<?php echo $_cCode ?>"><?php echo $_cName ?></label>
+        </dt>
+        <dd id="dd_method_<?php echo $_code ?>">
+        <div id="payment_form_<?php echo $_cCode ?>"  class="form-list" style="display:none;">
+        <img src="<?php echo $this->getCardLogoPath($_cCode); ?>">
+        <p><?php echo $this->__('Pay online with %s', $_cName); ?></p>
+        </div>
+            </dd>
+    <?php endforeach; ?>
+    
+       <!-- <img src="<?php /*echo $this->getLogoPath(); */?>">-->
+        
+   
+<?php endif ?>
+
+
+
+
+
+
