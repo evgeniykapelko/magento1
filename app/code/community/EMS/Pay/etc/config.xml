@@ -119,7 +119,6 @@
                 <active>0</active>
                 <title>Bancontact</title>
                 <order_status>processing</order_status>
-                <bank_selection_enabled>1</bank_selection_enabled>
             </ems_pay_bancontact>
         </payment>
     </default>
