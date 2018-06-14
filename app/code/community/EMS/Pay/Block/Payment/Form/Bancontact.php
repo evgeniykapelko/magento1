@@ -17,31 +17,4 @@ class EMS_Pay_Block_Payment_Form_Bancontact extends EMS_Pay_Block_Payment_Form_F
         $this->setTemplate('ems_pay/form/bancontact.phtml');
     }
 
-    /**
-     * Returns bank selected by customer
-     *
-     * @return string|null
-     */
-    public function getIssuingBank()
-    {
-        return $this->getMethod()->getInfoInstance()->getAdditionalInformation('issuing_bank');
-    }
-
-    /**
-     * Returns list of supported issuing banks
-     *
-     * @return array bank names indexed by bank code
-     */
-    public function getIssuingBanks()
-    {
-        return $this->_config->getBancontactIssuingBanks();
-    }
-
-    /**
-     * @return bool
-     */
-    public function isIssuingBankSelectionEnabled()
-    {
-        return $this->_config->isBancontactIssuingBankSelectionEnabled();
-    }
 }
