@@ -136,7 +136,6 @@ abstract class EMS_Pay_Model_Method_Abstract extends Mage_Payment_Model_Method_A
                 EMS_Pay_Model_Info::LANGUAGE => $this->_getLanguage(),
                 EMS_Pay_Model_Info::BEMAIL => $this->_getOrder()->getCustomerEmail(),
                 EMS_Pay_Model_Info::MOBILE_MODE => $this->_getMobileMode(),
-                EMS_Pay_Model_Info::CUSTOMER_ID => $this->_getOrderId(),
             );
 
             $fields = array_merge($fields, $this->_getAddressRequestFields());

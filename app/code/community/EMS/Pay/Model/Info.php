@@ -81,7 +81,6 @@ class EMS_Pay_Model_Info
     const SHIPPING_FIELD_NAME = 'IPG_SHIPPING';
     const SHIPPING_FIELD_LABEL = 'IPG_SHIPPING';
     const SHIPPING_QTY = 1;
-    const CUSTOMER_ID = 'Customer_Id';
 
     /**
      * It's not clear yet which response field should be used as transaction ip so this constant is a placeholder
