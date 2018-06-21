@@ -70,7 +70,7 @@ class EMS_Pay_Model_Info
     const IBAN = 'iban';
 
     const IDEAL_ISSUER_ID = 'idealIssuerID';
-    const IDEAL_CUSTOMER_ID = 'idealCustomerID';
+    const IDEAL_CUSTOMER_ID = 'customerID';
 
     const BANCONTACT_ISSUER_ID = 'bancontactIssuerID';
 
