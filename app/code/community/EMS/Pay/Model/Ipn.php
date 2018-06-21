@@ -118,9 +118,16 @@ class EMS_Pay_Model_Ipn
 
         $this->_order->save();
 
-        $this->_order->queueNewOrderEmail()
-            ->setIsCustomerNotified(true)
-            ->save();
+        $version = Mage::getVersion();
+        if (version_compare($version, '1.9', '>=')){
+            $this->_order->queueNewOrderEmail()
+                ->setIsCustomerNotified(true)
+                ->save();
+        } else {
+            $this->_order->sendNewOrderEmail()
+                ->setIsCustomerNotified(true)
+                ->save();
+        }
 
         /** @var EMS_Pay_Model_InvoiceMailer $invoiceMailer */
         $invoiceMailer = Mage::getModel('ems_pay/invoiceMailer');
