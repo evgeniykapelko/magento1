@@ -28,6 +28,16 @@ class EMS_Pay_Block_Payment_Form_Ideal extends EMS_Pay_Block_Payment_Form_Form
     }
 
     /**
+     * Returns iDeal Customer Id
+     *
+     * @return string|null
+     */
+    public function getCustimerid()
+    {
+        return $this->getMethod()->getInfoInstance()->getAdditionalInformation('customerid');
+    }
+
+    /**
      * Returns list of supported issuing banks
      *
      * @return array bank names indexed by bank code
@@ -43,5 +53,13 @@ class EMS_Pay_Block_Payment_Form_Ideal extends EMS_Pay_Block_Payment_Form_Form
     public function isIssuingBankSelectionEnabled()
     {
         return $this->_config->isIdealIssuingBankSelectionEnabled();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCustomerIdSelectionEnabled()
+    {
+        return $this->_config->isIdealCustomerIdSelectionEnabled();
     }
 }

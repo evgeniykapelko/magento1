@@ -20,4 +20,13 @@ $_code = $this->getMethodCode();
         </div>
     </li>
     <?php endif; ?>
+    <?php /*if ($this->isCustomerIdSelectionEnabled()):*/?><!--
+        <li>
+            <label for="<?php /*echo $_code */?>_customerid"><?php /*echo $this->__('Please select Ideal Customer Id') */?></label>
+            <div class="input-box">
+                <input type="text" id="<?php /*echo $_code */?>_customerid" name="payment[customerid]" title="<?php /*echo Mage::helper('core')->quoteEscape($this->__('Please select IDeal Customer Id')) */?>" class="">
+                </input>
+            </div>
+        </li>
+    --><?php /*endif; */?>
 </ul>
