@@ -3,6 +3,7 @@
 class EMS_Pay_Model_Method_Ideal extends EMS_Pay_Model_Method_Abstract
 {
     const ISSUING_BANK_FIELD_NAME = 'issuing_bank';
+    const ISSUING_CUSTOMER_ID_FIELD_NAME = 'customerid';
 
     protected $_code = EMS_Pay_Model_Config::METHOD_IDEAL;
     protected $_formBlockType = 'ems_pay/payment_form_ideal';
@@ -14,6 +15,7 @@ class EMS_Pay_Model_Method_Ideal extends EMS_Pay_Model_Method_Abstract
     {
         $fields = array();
         $fields[EMS_Pay_Model_Info::IDEAL_ISSUER_ID] = $this->_getIssuingBankCode();
+        $fields[EMS_Pay_Model_Info::IDEAL_CUSTOMER_ID] = $this->_getOrderId();
 
         return $fields;
     }
@@ -27,6 +29,14 @@ class EMS_Pay_Model_Method_Ideal extends EMS_Pay_Model_Method_Abstract
     }
 
     /**
+     * @return string|null
+     */
+    protected function _getCustomerid()
+    {
+        return $this->getInfoInstance()->getAdditionalInformation(self::ISSUING_CUSTOMER_ID_FIELD_NAME);
+    }
+
+    /**
      * @inheritdoc
      */
     public function assignData($data)
@@ -37,6 +47,10 @@ class EMS_Pay_Model_Method_Ideal extends EMS_Pay_Model_Method_Abstract
             $info->setAdditionalInformation(self::ISSUING_BANK_FIELD_NAME, $data->getIssuingBank());
         }
 
+        if ($data->getCustomerid()) {
+            $info->setAdditionalInformation(self::ISSUING_CUSTOMER_ID_FIELD_NAME, $data->getCustomerid());
+        }
+
         return $this;
     }
 
@@ -45,7 +59,7 @@ class EMS_Pay_Model_Method_Ideal extends EMS_Pay_Model_Method_Abstract
      */
     public function validate()
     {
-        parent::validate();
+            parent::validate();
         if (!$this->_isBankSelectionEnabled()) {
             return $this;
         }
