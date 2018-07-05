@@ -51,8 +51,10 @@ class EMS_Pay_Model_Config
     const XML_CONFIG_LOGGING_ENABLED = 'payment/ems_pay_general/log_enabled';
     const XML_CONFIG_IDEAL_BANK_SELECTION = 'payment/ems_pay_ideal/bank_selection_enabled';
 
+
  //  const XML_CONFIG_IDEAL_CUSTOMER_ID_SELECTION = 'payment/ems_pay_ideal/customerid_selection_enabled';
 //   const XML_CONFIG_BANCONTACT_BANK_SELECTION = 'payment/ems_pay_bancontact/bank_selection_enabled';
+
 
     const XML_CONFIG_CC_TYPES = 'payment/ems_pay_cc/cctypes';
     const XML_CONFIG_CC_3DSECURE = 'payment/ems_pay_cc/enable_3dsecure';
@@ -388,6 +390,7 @@ class EMS_Pay_Model_Config
         return Mage::getStoreConfigFlag(self::XML_CONFIG_IDEAL_BANK_SELECTION);
     }
 
+
     /**
      * @return bool
      */
@@ -404,6 +407,7 @@ class EMS_Pay_Model_Config
     {
         return Mage::getStoreConfigFlag(self::XML_CONFIG_BANCONTACT_BANK_SELECTION);
     }
+
 
     /**
      * Returns list of issuing banks supported by iDEAL
