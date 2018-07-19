@@ -6,8 +6,8 @@ $isEnable = $this->getEnableSeparateCc();
 ?>
 <?php if (!$isEnable): ?>
     <dt id="dt_method_<?php echo $_code ?>">
-        <input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" title="Credit card" onclick="payment.switchMethod('<?php echo $_code ?>')"<?php if($this->getSelectedMethodCode()==$_code): ?> checked="checked"<?php endif; ?> class="radio" />
-        <label for="p_method_<?php echo $_code ?>">Credit card</label>
+        <input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" title="<?php echo $this->getMethod()->getTitle(); ?>" onclick="payment.switchMethod('<?php echo $_code ?>')"<?php if($this->getSelectedMethodCode()==$_code): ?> checked="checked"<?php endif; ?> class="radio" />
+        <label for="p_method_<?php echo $_code ?>"><?php echo $this->getMethod()->getTitle(); ?></label>
     </dt>
     <dd id="dd_method_<?php echo $_code ?>">
 <ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
@@ -32,6 +32,7 @@ $isEnable = $this->getEnableSeparateCc();
     </dd>
 <?php else: ?>
     <?php foreach ($_cardTypes as $_cCode => $_cName): ?>
+    <?php if ($_cCode == "ems_pay_cc") continue; ?>
         <dt id="dt_method_<?php echo $_code ?>">
             <input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" title="<?php echo $_cName ?>" onclick="payment.switchMethod('<?php echo $_cCode ?>')"<?php if($this->getSelectedMethodCode()==$_code): ?> checked="checked"<?php endif; ?> class="radio" />
             <label for="p_method_<?php echo $_code ?>"><?php echo $_cName ?></label>
@@ -45,6 +46,7 @@ $isEnable = $this->getEnableSeparateCc();
                     <option value="<?php echo $_cCode ?>" selected="selected"><?php echo $_cName ?></option>
                 </select>
             </div>
+
         <p><?php echo $this->__('Pay online with %s', $_cName); ?></p>
         </div>
             </dd>
